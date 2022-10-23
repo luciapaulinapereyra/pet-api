@@ -7,27 +7,29 @@ import javax.persistence.Id;
 @Entity
 public class PetModel {
 	@Id
-	@Column(name= "id", length = 50)
+	@Column(name = "id", length = 50)
 	private Long id;
-	@Column(name= "name")
+	@Column(name = "name")
 	private String name;
-	@Column(name= "years")
+	@Column(name = "years")
 	private int years;
-	@Column(name= "description")
+	@Column(name = "description")
 	private String description;
-	@Column(name= "category")
+	@Column(name = "category")
 	private String category;
-	@Column(name ="picture")
+	@Column(name = "picture")
 	private String picture;
+	@Column(name = "lost_zone")
+	private String lost_zone;
 
-	public PetModel(Long id, String name, int years, String description, String category, String picture) {
-		super();
-		this.id = id;
+	public PetModel(String name, int years, String description, String category, String picture,
+			String lost_zone) {
 		this.name = name;
 		this.years = years;
 		this.description = description;
 		this.category = category;
 		this.picture = picture;
+		this.lost_zone = lost_zone;
 	}
 
 	public String getPicture() {
@@ -38,7 +40,8 @@ public class PetModel {
 		this.picture = picture;
 	}
 
-	public PetModel() {}
+	public PetModel() {
+	}
 
 	public Long getId() {
 		return id;
@@ -78,6 +81,14 @@ public class PetModel {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getLost_zone() {
+		return lost_zone;
+	}
+
+	public void setLost_zone(String lost_zone) {
+		this.lost_zone = lost_zone;
 	}
 
 }

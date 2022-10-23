@@ -20,17 +20,8 @@ public class PetService {
 	
 	//create & save the pet
 	public ResponseEntity<Object> createPet(PetModel pet) {
-		
-		PetModel newPet = new PetModel();
-		newPet.setName(pet.getName());
-		newPet.setCategory(pet.getCategory());
-		newPet.setDescription(pet.getDescription());
-		newPet.setYears(pet.getYears());
-		newPet.setId(pet.getId());
-		newPet.setPicture(pet.getPicture());
-		
 		try {
-			PetModel savedPet = petRepo.save(newPet);
+			PetModel savedPet = petRepo.save(pet);
 		   return  ResponseHandler.generateResponse("Pet saved!", HttpStatus.CREATED, savedPet, false);
 		} catch (Exception err) {
 			return  ResponseHandler.generateResponse(err.toString(), HttpStatus.INTERNAL_SERVER_ERROR, null, true);
