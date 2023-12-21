@@ -1,4 +1,4 @@
-package com.example.demo.pet.app.response;
+package com.api.pet.response;
 
 import java.util.HashMap;
 import java.util.Map;

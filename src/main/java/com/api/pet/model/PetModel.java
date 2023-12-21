@@ -1,4 +1,4 @@
-package com.example.demo.pet.app.model;
+package com.api.pet.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
