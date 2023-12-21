@@ -32,10 +32,10 @@ public class PetService {
 
 
     //get all the pets
-    public ResponseEntity<Object> getPets() {
+    public ResponseEntity<Object> getPets(int page, int size) {
 
         try {
-            Page<PetModel> petPage = petRepo.findAll(PageRequest.of(0, 10));
+            Page<PetModel> petPage = petRepo.findAll(PageRequest.of(page, size));
 
             if (petPage.isEmpty()) {
                 return ResponseHandler.generateResponse("the list is empty!", HttpStatus.NOT_FOUND, null, true);

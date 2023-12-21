@@ -19,33 +19,34 @@ import com.api.pet.service.PetService;
 @RestController
 @RequestMapping("/api/pets")
 public class PetController {
-	@Autowired
-	private PetService petService;
+    @Autowired
+    private PetService petService;
 
-	@GetMapping("/all")
-	public ResponseEntity<Object> getPets() { // To get all the pets
-		return this.petService.getPets();
-	}
+    @GetMapping("/all/{pageN}/{pageSize}") // To get all the pets with pagination
+    public ResponseEntity<Object> getAllPets(@PathVariable("pageN") int pageN,
+                                             @PathVariable("pageSize") int pageSize) {
+        return this.petService.getPets(pageN, pageSize);
+    }
 
-	@GetMapping(path = "/{category}") // To get a pet with a specific category
-	public ResponseEntity<Object> findByName(@PathVariable("category") String category) {
-		return this.petService.findByCategory(category);
-	}
+    @GetMapping(path = "/{category}") // To get a pet with a specific category
+    public ResponseEntity<Object> findByName(@PathVariable("category") String category) {
+        return this.petService.findByCategory(category);
+    }
 
-	@PostMapping() // to create a pet
-	public ResponseEntity<Object> createPet(@RequestBody PetModel pet1) {
-		return this.petService.createPet(pet1);
+    @PostMapping() // to create a pet
+    public ResponseEntity<Object> createPet(@RequestBody PetModel pet1) {
+        return this.petService.createPet(pet1);
 
-	}
+    }
 
-	@PutMapping(path = "/{id}") // To edit a pet
-	public ResponseEntity<Object> editPet(@PathVariable("id") Long id, @RequestBody PetModel pet) {
-		return this.petService.editPet(id, pet);
-	}
+    @PutMapping(path = "/{id}") // To edit a pet
+    public ResponseEntity<Object> editPet(@PathVariable("id") Long id, @RequestBody PetModel pet) {
+        return this.petService.editPet(id, pet);
+    }
 
-	@DeleteMapping(path = "/{id}") // To delete a pet
-	public ResponseEntity<Object> deletePet(@PathVariable("id") Long id) {
-		return this.petService.deletePet(id);
-	}
+    @DeleteMapping(path = "/{id}") // To delete a pet
+    public ResponseEntity<Object> deletePet(@PathVariable("id") Long id) {
+        return this.petService.deletePet(id);
+    }
 
 }

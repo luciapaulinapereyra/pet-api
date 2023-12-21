@@ -73,7 +73,7 @@ class PetServiceTest {
 
         when(petRepository.findAll(pageRequest)).thenReturn(new PageImpl<>(List.of(pet)));
 
-        ResponseEntity<Object> res = petService.getPets();
+        ResponseEntity<Object> res = petService.getPets(0, 10);
 
         assertEquals(200, res.getStatusCodeValue());
         verify(petRepository, times(1)).findAll(any(PageRequest.class));
@@ -88,7 +88,7 @@ class PetServiceTest {
 
         when(petRepository.findAll(pageRequest)).thenReturn(new PageImpl<>(List.of()));
 
-        ResponseEntity<Object> res = petService.getPets();
+        ResponseEntity<Object> res = petService.getPets(0,10);
 
         assertEquals(404, res.getStatusCodeValue());
         verify(petRepository, times(1)).findAll(any(PageRequest.class));
@@ -103,7 +103,7 @@ class PetServiceTest {
 
         when(petRepository.findAll(pageRequest)).thenThrow(new RuntimeException("test"));
 
-        ResponseEntity<Object> res = petService.getPets();
+        ResponseEntity<Object> res = petService.getPets(0,10);
 
         assertEquals(500, res.getStatusCodeValue());
         verify(petRepository, times(1)).findAll(any(PageRequest.class));

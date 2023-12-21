@@ -29,9 +29,9 @@ class PetControllerTest {
 
     @Test
     void getPets() throws Exception {
-        when(petService.getPets()).thenReturn(ResponseEntity.ok("hello"));
+        when(petService.getPets(0,10)).thenReturn(ResponseEntity.ok("hello"));
 
-        mockMvc.perform(get("/api/pets/all"))
+        mockMvc.perform(get("/api/pets/all/0/10"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello"));
 
